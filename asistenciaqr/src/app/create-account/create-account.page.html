@@ -1,0 +1,93 @@
+<ion-content [fullscreen]="true">
+  <div class="crear-container">
+    <ion-button router="/login" class="recuperar-button back-button">
+      <ion-icon name="chevron-back-outline" slot="start"></ion-icon>
+      Atrás
+    </ion-button>
+    <div class="crear-box">
+      <img src="../../assets/icon/LogoDuoc.webp" alt="Logo Duoc" class="logo" />
+      <form [formGroup]="personForm" (ngSubmit)="savePerson()">
+        <ion-item>
+          <ion-input
+            placeholder="Ingrese Nombre"
+            formControlName="name"
+            type="text"
+            required
+          >
+            <ion-icon name="pencil-outline" slot="start"></ion-icon>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            placeholder="Ingrese Apellido"
+            formControlName="last_name"
+            type="text"
+            required
+          >
+            <ion-icon name="pencil-outline" slot="start"></ion-icon>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select
+            placeholder="Eliga Carrera"
+            formControlName="career"
+            required
+          >
+            <ion-icon name="briefcase-outline" slot="start"></ion-icon>
+            <ion-select-option *ngFor="let carrera of career" [value]="carrera">
+              {{ carrera }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-select
+            placeholder="Eliga Profesión"
+            formControlName="tipePerson"
+            required
+            (ionChange)="onTipePersonChange($event)"
+          >
+            <ion-icon name="people-outline" slot="start"></ion-icon>
+            <ion-select-option *ngFor="let tipo of tipe" [value]="tipo">
+              {{ tipo }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="showHour">
+          <ion-select
+            palceholder="Seleccione Horario"
+            formControlName="hour"
+            required
+          >
+            <ion-icon name="time-outline" slot="start"></ion-icon>
+            <ion-select-option *ngFor="let hora of hour" [value]="hora">
+              {{ hora }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            [placeholder]="placeholderCorreo"
+            formControlName="email"
+            type="email"
+            required
+          >
+            <ion-icon name="at-outline" slot="start"></ion-icon>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            palceholder="Contraseña min 6 caracteres"
+            formControlName="password"
+            required
+            type="password"
+          >
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          </ion-input>
+        </ion-item>
+        <ion-button type="submit" [disabled]="!personForm.valid">
+          Crear Cuenta
+        </ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>

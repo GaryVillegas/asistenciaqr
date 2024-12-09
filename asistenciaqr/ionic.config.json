@@ -1,0 +1,7 @@
+{
+  "name": "asistenciaqr",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
