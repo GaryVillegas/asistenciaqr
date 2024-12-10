@@ -14,6 +14,8 @@ import {
   AngularFireAuthModule,
 } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { StoreService } from './store.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,14 +25,36 @@ import { AngularFireModule } from '@angular/fire/compat';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFireModule.initializeApp({
+      projectId: 'asistenciaqr-33651',
+      appId: '1:872636596605:web:c261c798b303cdf5074c14',
+      storageBucket: 'asistenciaqr-33651.firebasestorage.app',
+      apiKey: 'AIzaSyCkXsuyaZgLyg20nOlx7KYoxdFe-qfreC0',
+      authDomain: 'asistenciaqr-33651.firebaseapp.com',
+      messagingSenderId: '872636596605',
+    }),
+    AngularFirestoreModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    AngularFireAuth,
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireModule,
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'asistenciaqr-33651',
+        appId: '1:872636596605:web:c261c798b303cdf5074c14',
+        storageBucket: 'asistenciaqr-33651.firebasestorage.app',
+        apiKey: 'AIzaSyCkXsuyaZgLyg20nOlx7KYoxdFe-qfreC0',
+        authDomain: 'asistenciaqr-33651.firebaseapp.com',
+        messagingSenderId: '872636596605',
+      })
+    ),
+    StoreService,
   ],
   bootstrap: [AppComponent],
 })

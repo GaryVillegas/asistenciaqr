@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyBy6UgLWcMb6I1aajDe0r5NXE-cGz0F_9Q',
-    authDomain: 'qrasistencia-5ff91.firebaseapp.com',
-    projectId: 'qrasistencia-5ff91',
-    storageBucket: 'qrasistencia-5ff91.firebasestorage.app',
-    messagingSenderId: '871539719149',
-    appId: '1:871539719149:web:a338df35cfdbfa1beac5e4',
+    apiKey: 'AIzaSyCkXsuyaZgLyg20nOlx7KYoxdFe-qfreC0',
+    authDomain: 'asistenciaqr-33651.firebaseapp.com',
+    projectId: 'asistenciaqr-33651',
+    storageBucket: 'asistenciaqr-33651.firebasestorage.app',
+    messagingSenderId: '872636596605',
+    appId: '1:872636596605:web:c261c798b303cdf5074c14',
   },
 };
 
