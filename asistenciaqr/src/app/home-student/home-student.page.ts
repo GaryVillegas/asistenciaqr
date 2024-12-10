@@ -29,10 +29,10 @@ export class HomeStudentPage implements OnInit {
     this.auth.getCurrentUser().subscribe((user) => {
       if (user) {
         this.store.getUserData(user.uid).subscribe((userData: any) => {
-          this.usuario.nombre = userData?.nombre || 'Usuario'; // Asigna el nombre o un valor por defecto
-          this.usuario.carrera = userData?.carrera || 'Carrera';
+          this.usuario.nombre = userData?.name || 'Usuario'; // Asigna el nombre o un valor por defecto
+          this.usuario.carrera = userData?.career || 'Carrera';
           this.usuario.userId = userData?.uid || 'Id';
-          this.usuario.horario = userData?.horario || 'Horario';
+          this.usuario.horario = userData?.hour || 'Horario';
           this.loadClasses();
           console.log(userData);
         });

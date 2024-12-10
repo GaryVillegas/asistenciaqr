@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content *ngIf="isMobile">
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="horario">
@@ -9,10 +9,22 @@
         <ion-icon name="home-outline"></ion-icon>
         Home
       </ion-tab-button>
-      <ion-tab-button tab="asistencias">
+      <ion-tab-button tab="asistencia">
         <ion-icon name="calendar-outline"></ion-icon>
         Asistencias
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
+</ion-content>
+
+<ion-content
+  *ngIf="!isMobile"
+  class="desktop-message-container text-dark d-flex justify-content-center align-items-center"
+>
+  <p class="message text-dark text-center">
+    <strong>Mensaje:</strong><br />
+    la asistencia por escritorio esta bloqueada, es
+    <strong>solo para profesores</strong>.<br />
+    Favor de escanear asistencia por <strong>celular</strong>.
+  </p>
 </ion-content>

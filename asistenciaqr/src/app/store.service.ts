@@ -26,7 +26,7 @@ export class StoreService {
       await this.firestore
         .collection('Class')
         .doc(profesorUid)
-        .collection('Clasees')
+        .collection('Classes')
         .add(classData);
       console.log('Datos de clase guardados');
     } catch (error) {
@@ -36,24 +36,20 @@ export class StoreService {
   }
 
   getAllClasses() {
-    return this.firestore.collectionGroup('Clasees').valueChanges();
+    return this.firestore.collectionGroup('Classes').valueChanges();
   }
 
   //Filtro solo por diurnoVespertino
-  getFilterClasses(horario: string) {
+  getFilterClasses(hour: string) {
     return this.firestore
-      .collectionGroup('Clasees', (ref) =>
-        ref.where('diurnoVespertino', '==', horario)
-      )
+      .collectionGroup('Classes', (ref) => ref.where('hour', '==', hour))
       .valueChanges();
   }
 
-  getFilteredClasses(horario: string, carrera: string) {
+  getFilteredClasses(hour: string, career: string) {
     return this.firestore
-      .collectionGroup('Clasees', (ref) =>
-        ref
-          .where('diurnoVespertino', '==', horario)
-          .where('carreraClase', '==', carrera)
+      .collectionGroup('Classes', (ref) =>
+        ref.where('hour', '==', hour).where('careerClass', '==', career)
       )
       .valueChanges();
   }
@@ -75,16 +71,16 @@ export class StoreService {
     return this.firestore.collection('Asistens').valueChanges();
   }
 
-  getProfesores() {
+  getProfesors() {
     return this.firestore
-      .collection('Users', (ref) => ref.where('tipoPersona', '==', 'Profesor'))
+      .collection('Users', (ref) => ref.where('tipePerson', '==', 'Profesor'))
       .valueChanges();
   }
 
   getAsistencias(uid: string) {
     console.log('Consultando asistencias con uid: ', uid);
     return this.firestore
-      .collection('Asistens', (ref) => ref.where('idUsuario', '==', uid))
+      .collection('Asistens', (ref) => ref.where('userUid', '==', uid))
       .valueChanges()
       .pipe(
         catchError((error) => {
