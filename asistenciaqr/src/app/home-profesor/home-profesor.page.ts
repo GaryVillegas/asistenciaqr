@@ -10,6 +10,10 @@ import { StoreService } from '../store.service';
   styleUrls: ['./home-profesor.page.scss'],
 })
 export class HomeProfesorPage implements OnInit {
+  qrData: string = 'Texto de base';
+  createdCode: string = '';
+  claseForm: FormGroup;
+
   constructor(
     private toast: ToastController,
     private fb: FormBuilder,
@@ -26,7 +30,6 @@ export class HomeProfesorPage implements OnInit {
       profesor: ['', Validators.required],
     });
   }
-  claseForm: FormGroup;
   career: string[] = [
     'Ingeniería Informatica',
     'Tecnico Informatico',
@@ -42,9 +45,19 @@ export class HomeProfesorPage implements OnInit {
   clases: any[] = []; //variable para almacenar las clases
 
   async ngOnInit() {
+    this.loadClasses();
     this.loadProfesor();
     this.checkIfMobile();
     window.addEventListener('resize', () => this.checkIfMobile());
+    this.authSer.getCurrentUser().subscribe((user) => {
+      if (user) {
+        this.store.getUserData(user.uid).subscribe((userData: any) => {
+          this.usuario.name = userData?.name || 'Usuario'; // Asigna el nombre o un valor por defecto
+        });
+      } else {
+        this.usuario.nombre = 'Invitado';
+      }
+    });
   }
 
   isMobile: boolean = false;
@@ -58,29 +71,15 @@ export class HomeProfesorPage implements OnInit {
     this.isCrearModalOpen = isOpen;
   }
 
-  qrData: string = 'Texto de base';
   setQrData(clases: any) {
-    this.qrData = clases.id; // Set the selected class's ID as QR data
-    this.generateQrCode(); // Generate the QR code based on the selected class's ID
-    this.setOpen(true); // Open the modal
-    this.authSer.getCurrentUser().subscribe((user) => {
-      if (user) {
-        this.store.getUserData(user.uid).subscribe((userData: any) => {
-          this.usuario.name = userData?.name || 'Usuario';
-        });
-      } else {
-        this.usuario.name = 'Invitado';
-      }
-    });
-  }
-
-  createdCode: string = '';
-  generateQrCode() {
-    if (this.qrData) {
-      this.createdCode = this.qrData; // Generate the QR code with the QR data
+    if (clases) {
+      this.createdCode = JSON.stringify(clases.id);
+      console.log('Código QR generado:', this.createdCode);
     } else {
-      console.error('QR data is not set. Please select a class.');
+      console.error('Clase no válida:', clases);
+      this.createdCode = ''; // Fallback a string vacío si los datos no son válidos
     }
+    this.isModalOpen = true; // Abre el modal
   }
 
   // Modal QR
@@ -114,6 +113,7 @@ export class HomeProfesorPage implements OnInit {
         'Error',
         'Por favor complete todos los campos correctamente.'
       );
+      console.error('Formulario inválido:', this.claseForm.errors);
     }
   }
 

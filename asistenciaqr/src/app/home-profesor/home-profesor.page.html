@@ -42,7 +42,7 @@
                       label="Nombre de la clase"
                       label-placement="floating"
                       fill="outline"
-                      formControlName="nombre"
+                      formControlName="name"
                       type="text"
                     ></ion-input>
                   </ion-item>
@@ -51,7 +51,7 @@
                       label="Carrera"
                       placeholder="Elija carrera"
                       fill="outline"
-                      formControlName="career"
+                      formControlName="careerClass"
                       required
                     >
                       <ion-select-option
@@ -119,7 +119,7 @@
                         *ngFor="let profesor of profesors"
                         [value]="profesor.uid"
                       >
-                        {{ profesor.nombre }}
+                        {{ profesor.name }}
                       </ion-select-option>
                     </ion-select>
                   </ion-item>
@@ -136,14 +136,13 @@
                 <ion-list>
                   <ion-item *ngFor="let clase of clases">
                     <ion-label>
-                      <h1>{{ clase.nombre }}</h1>
-                      <h2>Carrera: {{ clase.carreraClase }}</h2>
+                      <h1>{{ clase.name }}</h1>
+                      <h2>Carrera: {{ clase.careerClass }}</h2>
                       <p>
-                        Horario: {{ clase.horaInicio }} - {{ clase.horaTermino
-                        }}
+                        Horario: {{ clase.iniTime }} - {{ clase.finishTime }}
                       </p>
-                      <p>Jornada: {{ clase.diurnoVespertino }}</p>
-                      <p>Días: {{ clase.dias?.join(', ') }}</p>
+                      <p>Jornada: {{ clase.hour }}</p>
+                      <p>Días: {{ clase.week?.join(', ') }}</p>
                       <p>Profesor: {{ clase.profesor }}</p>
                     </ion-label>
                   </ion-item>
@@ -160,15 +159,15 @@
         <ion-list-header>
           <ion-label>Lista de Clases</ion-label>
         </ion-list-header>
-        <p>Bienvenido, {{usuario.nombre}}</p>
+        <p>Bienvenido, {{usuario.name}}</p>
         <ion-item *ngFor="let clase of clases">
           <ion-label>
-            <h2>{{ clase.nombre }}</h2>
-            <h3>{{ clase.carreraClase }}</h3>
+            <h2>{{ clase.name }}</h2>
+            <h3>{{ clase.careerClass }}</h3>
             <p>Profesor: {{clase.profesor}}</p>
-            <p>Horario: {{ clase.horaInicio }} - {{ clase.horaTermino }}</p>
-            <p>Jornada: {{ clase.diurnoVespertino }}</p>
-            <p>Día(s): {{ clase.dias }}</p>
+            <p>Horario: {{ clase.iniTime }} - {{ clase.finishTime }}</p>
+            <p>Jornada: {{ clase.hour }}</p>
+            <p>Día(s): {{ clase.week }}</p>
             <ion-button (click)="setQrData(clase)">Generar QR</ion-button>
           </ion-label>
           <ion-modal [isOpen]="isModalOpen">
@@ -185,12 +184,15 @@
               </ion-header>
               <ion-content class="ion-padding d-flex-center">
                 <div class="qr-wrapper" *ngIf="createdCode">
-                  <qrcode
-                    [qrdata]="createdCode"
-                    [width]="250"
-                    [errorCorrectionLevel]="'M'"
-                  ></qrcode>
-                  {{qrData}}
+                  <div *ngIf="createdCode">
+                    <qr-code
+                      [value]="createdCode"
+                      [size]="250"
+                      errorCorrectionLevel="M"
+                    ></qr-code>
+                  </div>
+                  {{createdCode}}
+                  <p *ngIf="!createdCode">No hay clase programada para hoy.</p>
                 </div>
                 <p *ngIf="!createdCode">No hay clase programada para hoy.</p>
               </ion-content>

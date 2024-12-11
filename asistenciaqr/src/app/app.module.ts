@@ -8,7 +8,6 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { environment } from 'src/environments/environment';
 import {
   AngularFireAuth,
   AngularFireAuthModule,
@@ -16,6 +15,7 @@ import {
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { StoreService } from './store.service';
+import { QrCodeModule } from 'ng-qrcode';
 
 @NgModule({
   declarations: [AppComponent],
@@ -55,6 +55,7 @@ import { StoreService } from './store.service';
       })
     ),
     StoreService,
+    QrCodeModule,
   ],
   bootstrap: [AppComponent],
 })
