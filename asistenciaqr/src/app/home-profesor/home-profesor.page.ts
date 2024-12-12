@@ -73,7 +73,7 @@ export class HomeProfesorPage implements OnInit {
 
   setQrData(clases: any) {
     if (clases) {
-      this.createdCode = JSON.stringify(clases.id);
+      this.createdCode = clases.id;
       console.log('Código QR generado:', this.createdCode);
     } else {
       console.error('Clase no válida:', clases);

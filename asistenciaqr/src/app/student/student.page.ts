@@ -9,6 +9,7 @@ export class StudentPage implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.checkIfMobile();
     window.addEventListener('resize', () => this.checkIfMobile());
   }
 

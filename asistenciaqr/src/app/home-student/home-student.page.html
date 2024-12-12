@@ -143,13 +143,13 @@
       <ion-card *ngFor="let clase of clases">
         <ion-card-header>
           <ion-card-subtitle> {{ clase.profesor }} </ion-card-subtitle>
-          <ion-card-title> {{ clase.nombre }} </ion-card-title>
+          <ion-card-title> {{ clase.name }} </ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <p>ID: {{ clase.id }}</p>
-          <p>Carrera: {{ clase.carreraClase }}</p>
-          <p>Hora: {{ clase.horaInicio }} - {{clase.horaTermino}}</p>
-          <p>Dia(s): {{ clase.dias }}</p>
+          <p>Carrera: {{ clase.careerClass }}</p>
+          <p>Hora: {{ clase.iniTime }} - {{clase.finishTime}}</p>
+          <p>Dia(s): {{ clase.week }}</p>
           <button class="btn btn-primary mt-2" (click)="setScannerOpen(true)">
             <i class="bi bi-upc-scan"></i> Escáner QR
           </button>

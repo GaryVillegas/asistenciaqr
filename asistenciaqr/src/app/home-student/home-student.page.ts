@@ -101,11 +101,11 @@ export class HomeStudentPage implements OnInit {
         const asistensId = now.toISOString();
 
         const nuevaAsistencia = {
-          idAsistencia: asistensId, // Este campo se llenará en el servicio al generar el ID
-          idClase: result, // Asume que el resultado del QR es el ID de la clase
-          nombreUsuario: this.usuario.nombre, // Asigna el nombre del usuario actual
-          idUsuario: this.usuario.userId, //Se asigna id del usuario para poder crear la consulta.
-          horaAsistencia: new Date().toISOString(), // Hora actual en formato ISO
+          idAsistens: asistensId, // Este campo se llenará en el servicio al generar el ID
+          idClass: result, // Asume que el resultado del QR es el ID de la clase
+          userName: this.usuario.nombre, // Asigna el nombre del usuario actual
+          userUid: this.usuario.userId, //Se asigna id del usuario para poder crear la consulta.
+          hourAsistens: new Date().toISOString(), // Hora actual en formato ISO
         };
 
         const asistenciaGuardada = await this.store.saveAsistenciaData(
