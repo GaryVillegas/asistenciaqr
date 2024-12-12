@@ -33,15 +33,22 @@ const routes: Routes = [
   },
   {
     path: 'home-student',
-    loadChildren: () => import('./home-student/home-student.module').then( m => m.HomeStudentPageModule)
+    loadChildren: () =>
+      import('./home-student/home-student.module').then(
+        (m) => m.HomeStudentPageModule
+      ),
   },
   {
     path: 'asistencia',
-    loadChildren: () => import('./asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
+    loadChildren: () =>
+      import('./asistencia/asistencia.module').then(
+        (m) => m.AsistenciaPageModule
+      ),
   },
   {
     path: 'horario',
-    loadChildren: () => import('./horario/horario.module').then( m => m.HorarioPageModule)
+    loadChildren: () =>
+      import('./horario/horario.module').then((m) => m.HorarioPageModule),
   },
 ];
 

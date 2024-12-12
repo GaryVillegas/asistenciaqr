@@ -96,3 +96,14 @@ ion-button {
     transform: translate3d(0, 0, 0);
   }
 }
+
+ion-popover {
+  --background: #ffffff; /* Fondo blanco del popover */
+}
+
+ion-popover ion-content {
+  --background: #ffffff; /* Fondo blanco del contenido */
+  color: #000; /* Texto negro, si es necesario */
+  font-size: 14px; /* Ajusta el tamaño del texto si es necesario */
+  padding: 16px; /* Espaciado interno para mejor diseño */
+}

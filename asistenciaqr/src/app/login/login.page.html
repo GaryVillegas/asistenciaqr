@@ -16,6 +16,17 @@
           >
             <ion-icon name="at-outline" slot="start"></ion-icon>
           </ion-input>
+          <ion-button id="click-trigger" shape="round"
+            ><ion-icon name="help-outline"></ion-icon
+          ></ion-button>
+          <ion-popover trigger="click-trigger" triggerAction="click">
+            <ng-template>
+              <ion-content class="ion-padding"
+                >Si es profesor: profesor.duoc.cl | Si es alumno:
+                duocuc.cl</ion-content
+              >
+            </ng-template>
+          </ion-popover>
         </ion-item>
         <ion-item>
           <ion-input
