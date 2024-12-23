@@ -39,5 +39,5 @@ Todo esto para poder hacer la aplicación de fácil acceso y responsiva ante los
 
 logos[^2]
 
-[^1]: https://asistenciaqr-157f6.web.app/login
+[^1]: ServicioNoActivo.
 [^2]: https://iconos8.es/icons
